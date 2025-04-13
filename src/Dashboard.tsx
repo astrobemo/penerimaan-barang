@@ -124,36 +124,24 @@ const Dashboard = () => {
 
         <div className="mb-4">
           <h3 className="text-xl font-bold mb-2">Completed Goods Receipt</h3>
-          <div className="overflow-x-auto">
-            <table className="table-auto w-full border-collapse border-4 border-black">
-              <thead>
-                <tr className="bg-yellow-300">
-                  <th className="border-4 border-black px-4 py-2">Plate Number</th>
-                  <th className="border-4 border-black px-4 py-2">Date</th>
-                  <th className="border-4 border-black px-4 py-2">Time</th>
-                  <th className="border-4 border-black px-4 py-2">Surat Jalan</th>
-                </tr>
-              </thead>
-              <tbody>
-                {completedData.slice(0, visibleCount).map((item, index) => (
-                  <tr key={index} className="odd:bg-white even:bg-gray-100">
-                    <td className="border-4 border-black px-4 py-2">{item.plateNumber}</td>
-                    <td className="border-4 border-black px-4 py-2">{item.date}</td>
-                    <td className="border-4 border-black px-4 py-2">{item.time}</td>
-                    <td className="border-4 border-black px-4 py-2">{item.suratJalan}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {visibleCount < completedData.length && (
-              <button
-                className="mt-4 bg-blue-500 text-black border-4 border-black px-4 py-2 rounded-none"
-                onClick={loadMoreCompleted}
-              >
-                Show More
-              </button>
-            )}
+          <div className="space-y-4">
+            {completedData.slice(0, visibleCount).map((item, index) => (
+              <div key={index} className="border-4 border-black p-4 bg-white rounded">
+                <p><span className="font-bold">Plate Number:</span> {item.plateNumber}</p>
+                <p><span className="font-bold">Date:</span> {item.date}</p>
+                <p><span className="font-bold">Time:</span> {item.time}</p>
+                <p><span className="font-bold">Surat Jalan:</span> {item.suratJalan}</p>
+              </div>
+            ))}
           </div>
+          {visibleCount < completedData.length && (
+            <button
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={loadMoreCompleted}
+            >
+              Show More
+            </button>
+          )}
         </div>
 
         <div className="mb-4">
