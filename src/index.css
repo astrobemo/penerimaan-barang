@@ -28,11 +28,11 @@ a:hover {
 }
 
 body {
+  display: block; /* Reset display to block to avoid layout conflicts */
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: #f3f4f6; /* Light gray background for better contrast */
 }
 
 h1 {
