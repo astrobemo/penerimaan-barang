@@ -5,7 +5,6 @@ import { FaPlus } from 'react-icons/fa';
 const Dashboard = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(5);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,26 +24,9 @@ const Dashboard = () => {
     setIsModalOpen(false);
   };
 
-  const loadMoreCompleted = () => {
-    setVisibleCount((prevCount) => prevCount + 5);
-  };
-
   const completedData = [
     { plateNumber: 'B1234XYZ', date: '2025-04-12', time: '10:00', suratJalan: 'SJ001' },
     { plateNumber: 'D5678ABC', date: '2025-04-12', time: '11:30', suratJalan: 'SJ002' },
-    { plateNumber: 'E9101DEF', date: '2025-04-13', time: '09:00', suratJalan: 'SJ003' },
-    { plateNumber: 'F1213GHI', date: '2025-04-13', time: '10:30', suratJalan: 'SJ004' },
-    { plateNumber: 'G1415JKL', date: '2025-04-13', time: '11:00', suratJalan: 'SJ005' },
-    { plateNumber: 'H1617MNO', date: '2025-04-13', time: '11:30', suratJalan: 'SJ006' },
-    { plateNumber: 'I1819PQR', date: '2025-04-13', time: '12:00', suratJalan: 'SJ007' },
-    { plateNumber: 'J2021STU', date: '2025-04-13', time: '12:30', suratJalan: 'SJ008' },
-    { plateNumber: 'K2223VWX', date: '2025-04-13', time: '13:00', suratJalan: 'SJ009' },
-    { plateNumber: 'L2425YZA', date: '2025-04-13', time: '13:30', suratJalan: 'SJ010' },
-    { plateNumber: 'M2627BCD', date: '2025-04-13', time: '14:00', suratJalan: 'SJ011' },
-    { plateNumber: 'N2829EFG', date: '2025-04-13', time: '14:30', suratJalan: 'SJ012' },
-    { plateNumber: 'O3031HIJ', date: '2025-04-13', time: '15:00', suratJalan: 'SJ013' },
-    { plateNumber: 'P3233KLM', date: '2025-04-13', time: '15:30', suratJalan: 'SJ014' },
-    { plateNumber: 'Q3435NOP', date: '2025-04-13', time: '16:00', suratJalan: 'SJ015' },
   ];
 
   const inProgressData = [
@@ -124,52 +106,74 @@ const Dashboard = () => {
 
         <div className="mb-4">
           <h3 className="text-xl font-bold mb-2">Completed Goods Receipt</h3>
-          <div className="space-y-4">
-            {completedData.slice(0, visibleCount).map((item, index) => (
-              <div key={index} className="border-4 border-black p-4 bg-white rounded">
-                <p><span className="font-bold">Plate Number:</span> {item.plateNumber}</p>
-                <p><span className="font-bold">Date:</span> {item.date}</p>
-                <p><span className="font-bold">Time:</span> {item.time}</p>
-                <p><span className="font-bold">Surat Jalan:</span> {item.suratJalan}</p>
-              </div>
-            ))}
-          </div>
-          {visibleCount < completedData.length && (
-            <button
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={loadMoreCompleted}
-            >
-              Show More
-            </button>
-          )}
+          <table className="w-full border-4 border-black">
+            <thead className="bg-gray-800 text-white">
+              <tr>
+                <th className="border-2 border-white p-2">Plate Number</th>
+                <th className="border-2 border-white p-2">Date</th>
+                <th className="border-2 border-white p-2">Time</th>
+                <th className="border-2 border-white p-2">Surat Jalan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {completedData.map((item, index) => (
+                <tr key={index} className="odd:bg-white even:bg-gray-200">
+                  <td className="border-2 border-black p-2">{item.plateNumber}</td>
+                  <td className="border-2 border-black p-2">{item.date}</td>
+                  <td className="border-2 border-black p-2">{item.time}</td>
+                  <td className="border-2 border-black p-2">{item.suratJalan}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <div className="mb-4">
           <h3 className="text-xl font-bold mb-2">In-Progress Goods Receipt</h3>
-          <div className="space-y-4">
-            {inProgressData.map((item, index) => (
-              <div key={index} className="border-4 border-black p-4 bg-white rounded">
-                <p><span className="font-bold">Plate Number:</span> {item.plateNumber}</p>
-                <p><span className="font-bold">Date:</span> {item.date}</p>
-                <p><span className="font-bold">Time:</span> {item.time}</p>
-                <p><span className="font-bold">Surat Jalan:</span> {item.suratJalan}</p>
-              </div>
-            ))}
-          </div>
+          <table className="w-full border-4 border-black">
+            <thead className="bg-gray-800 text-white">
+              <tr>
+                <th className="border-2 border-white p-2">Plate Number</th>
+                <th className="border-2 border-white p-2">Date</th>
+                <th className="border-2 border-white p-2">Time</th>
+                <th className="border-2 border-white p-2">Surat Jalan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {inProgressData.map((item, index) => (
+                <tr key={index} className="odd:bg-white even:bg-gray-200">
+                  <td className="border-2 border-black p-2">{item.plateNumber}</td>
+                  <td className="border-2 border-black p-2">{item.date}</td>
+                  <td className="border-2 border-black p-2">{item.time}</td>
+                  <td className="border-2 border-black p-2">{item.suratJalan}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <div>
           <h3 className="text-xl font-bold mb-2">Queue Goods Receipt</h3>
-          <div className="space-y-4">
-            {queueData.map((item, index) => (
-              <div key={index} className="border-4 border-black p-4 bg-white rounded">
-                <p><span className="font-bold">Plate Number:</span> {item.plateNumber}</p>
-                <p><span className="font-bold">Date:</span> {item.date}</p>
-                <p><span className="font-bold">Time:</span> {item.time}</p>
-                <p><span className="font-bold">Surat Jalan:</span> {item.suratJalan}</p>
-              </div>
-            ))}
-          </div>
+          <table className="w-full border-4 border-black">
+            <thead className="bg-gray-800 text-white">
+              <tr>
+                <th className="border-2 border-white p-2">Plate Number</th>
+                <th className="border-2 border-white p-2">Date</th>
+                <th className="border-2 border-white p-2">Time</th>
+                <th className="border-2 border-white p-2">Surat Jalan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {queueData.map((item, index) => (
+                <tr key={index} className="odd:bg-white even:bg-gray-200">
+                  <td className="border-2 border-black p-2">{item.plateNumber}</td>
+                  <td className="border-2 border-black p-2">{item.date}</td>
+                  <td className="border-2 border-black p-2">{item.time}</td>
+                  <td className="border-2 border-black p-2">{item.suratJalan}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
